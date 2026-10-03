@@ -43,3 +43,4 @@ The following Git workflow was utilized to ensure continuous integration and doc
    * `git branch` - Create branch for separate features
    * `git checkout` - Switch branch
    * `git merge` - Merge branch back into the main timeline
+   

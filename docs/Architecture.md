@@ -158,4 +158,5 @@ This diagram illustrates the states a single account goes through during its lif
    [Condition: Bal == 0]     │   └──────────────────────────────────┘
                              ▼               (Transaction Fails,
                        ◎ [Deleted]             Stays in Active State)
-```                       
+```                 
+      
