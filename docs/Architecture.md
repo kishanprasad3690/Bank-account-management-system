@@ -75,6 +75,7 @@ Data is saved persistently to flat text files in a comma-separated format.
   *(Example: `1001,1,DEPOSIT,2000.00,2025-06-02,09:30:00`)* 
 
 ## 5. UML Class Diagrams
+This is a visual blueprint that represents the static structure of a system by showing its classes, their attributes, methods, and the relationships between them.
 ```text
  ┌───────────────────────────┐      uses       ┌──────────────────────────────────┐
  │        BankAccount        │< - - - - - - - -│            BankSystem            │
@@ -138,8 +139,8 @@ The following sequence demonstrates how the system objects interact during a sta
 
 ```
 ## State Machine Diagram
-
 This diagram illustrates the states a single account goes through during its lifetime:
+
 ```text
                              ● [Start / Uninitialized]
                              │
