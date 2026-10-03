@@ -1,0 +1,14 @@
+# Local account and transaction data
+/accounts.csv
+/transactions.csv
+
+# Compiled application and object files
+/bank
+/bank.exe
+*.o
+*.obj
+*.out
+
+# Build directories
+/build/
+/cmake-build-*/
