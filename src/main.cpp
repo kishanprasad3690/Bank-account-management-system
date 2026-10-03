@@ -10,7 +10,6 @@
 
 using namespace std;
 
-// --- Helper Functions ---
 string getCurrentTimestamp() {
     time_t now = time(0);
     tm* ltm = localtime(&now);
@@ -23,7 +22,6 @@ string getCurrentTimestamp() {
     return ss.str();
 }
 
-// 🧹 Input clearing helpers to prevent infinite loops
 void clearInputBuffer() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -34,7 +32,6 @@ void waitForKey() {
     cin.get();
 }
 
-// --- Data Structures ---
 struct Transaction {
     int accountId;
     string type;
@@ -45,9 +42,9 @@ struct Transaction {
 class Account {
 public:
     int id;
-    string password; // Added Password Field
+    string password; 
     string name;
-    string type; // Savings/Current
+    string type; 
     double balance;
 
     Account() {}
@@ -55,7 +52,6 @@ public:
         : id(id), password(password), name(name), type(type), balance(balance) {}
 };
 
-// --- Banking System Class ---
 class BankSystem {
 private:
     map<int, Account> accounts;
@@ -63,18 +59,15 @@ private:
     const string ACCOUNTS_FILE = "accounts.csv";
     const string TRANSACTIONS_FILE = "transactions.csv";
 
-    // 📜 Record Transaction
     void recordTransaction(int id, const string& type, double amount) {
         Transaction t = {id, type, amount, getCurrentTimestamp()};
         transactions.push_back(t);
         saveTransactions();
     }
 
-    // 💾 Persistence: Save Data
     void saveAccounts() {
         ofstream out(ACCOUNTS_FILE);
         for (const auto& pair : accounts) {
-            // Save password in the CSV
             out << pair.second.id << "," << pair.second.password << "," 
                 << pair.second.name << "," << pair.second.type << "," 
                 << pair.second.balance << "\n";
@@ -88,7 +81,6 @@ private:
         }
     }
 
-    // 💾 Persistence: Load Data
     void loadData() {
         ifstream accFile(ACCOUNTS_FILE);
         string line, token;
@@ -124,17 +116,15 @@ public:
         loadData();
     }
 
-    // 1. Create Account
     void createAccount() {
         string name, type, password;
         double deposit;
         
-        int id = accounts.empty() ? 1 : accounts.rbegin()->first + 1; // Start IDs at 1 
+        int id = accounts.empty() ? 1 : accounts.rbegin()->first + 1;  
 
         cout << "\nEnter Account Holder Name: ";
         getline(cin, name);
 
-        // Added Password Prompt
         cout << "Enter Account Password/PIN: ";
         getline(cin, password);
         
@@ -147,7 +137,7 @@ public:
             cout << "Invalid input. Defaulting to 0.\n"; 
             deposit = 0; 
         } else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear trailing newline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
         }
 
         accounts[id] = Account(id, password, name, type, deposit);
@@ -158,7 +148,6 @@ public:
         waitForKey();
     }
 
-    // 2. View Account
     void viewAccount() {
         int id;
         cout << "\nEnter Account ID to view: ";
@@ -170,7 +159,7 @@ public:
             cout << "Account ID    : " << accounts[id].id << "\n";
             cout << "Holder Name   : " << accounts[id].name << "\n";
             cout << "Account Type  : " << accounts[id].type << "\n";
-            cout << "Password      : " << accounts[id].password << "\n"; // Optional: Show password or hide it
+            cout << "Password      : " << accounts[id].password << "\n"; 
             cout << "Total Balance : $" << fixed << setprecision(2) << accounts[id].balance << "\n";
         } else {
             cout << "Account not found!\n";
@@ -178,7 +167,6 @@ public:
         waitForKey();
     }
 
-    // 3. Search Account
     void searchAccount() {
         string query;
         cout << "\nEnter Account Holder Name to search: ";
@@ -197,7 +185,6 @@ public:
         waitForKey();
     }
 
-    // 4. Update Account
     void updateAccount() {
         int id;
         cout << "\nEnter Account ID to update: ";
@@ -208,7 +195,7 @@ public:
             cout << "Enter New Account Holder Name: ";
             getline(cin, accounts[id].name);
             
-            cout << "Enter New Password/PIN: "; // Added update password
+            cout << "Enter New Password/PIN: "; 
             getline(cin, accounts[id].password);
 
             cout << "Enter New Account Type (Savings/Current): ";
@@ -222,7 +209,6 @@ public:
         waitForKey();
     }
 
-    // 5. Delete Account
     void deleteAccount() {
         int id;
         cout << "\nEnter Account ID to delete: ";
@@ -243,7 +229,6 @@ public:
         waitForKey();
     }
 
-    // 6. Check Balance
     void checkBalance() {
         int id;
         cout << "\nEnter Account ID to check balance: ";
@@ -258,7 +243,6 @@ public:
         waitForKey();
     }
 
-    // 7. Transaction History
     void transactionHistory() {
         int id;
         cout << "\nEnter Account ID to view history: ";
@@ -281,7 +265,6 @@ public:
         waitForKey();
     }
 
-    // 8. Low Balance Alert
     void lowBalanceAlert() {
         double threshold = 500.0; // Low balance limit
         cout << "\n--- Accounts with Balance Below $" << threshold << " ---\n";
@@ -297,7 +280,6 @@ public:
         waitForKey();
     }
 
-    // 9. Reports
     void reports() {
         double totalFunds = 0;
         int totalAccounts = accounts.size();
@@ -332,7 +314,7 @@ public:
                 cout << "Invalid choice. Please enter a number.\n";
                 continue;
             }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear trailing newline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 
             switch (choice) {
                 case 1: createAccount(); break;

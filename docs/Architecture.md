@@ -103,7 +103,7 @@ This is a visual blueprint that represents the static structure of a system by s
  │ + loadTransactions()      │                 │ - date : string                  │
  └───────────────────────────┘                 └──────────────────────────────────┘
 ```
-### Sequence Diagram (Scenario: Depositing Money)
+### 6. Sequence Diagram (Scenario: Depositing Money)
 The following sequence demonstrates how the system objects interact during a standard deposit operation:
 
 ```text
@@ -138,7 +138,7 @@ The following sequence demonstrates how the system objects interact during a sta
          │                     │                      │                     │
 
 ```
-## State Machine Diagram
+## 7. State Machine Diagram
 This diagram illustrates the states a single account goes through during its lifetime:
 
 ```text
